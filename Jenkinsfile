@@ -119,7 +119,7 @@ stage ('download the artifacts from artifactory')
                               """{
                                 "files": [
                                   {
-                                    "pattern": "Aby-dotnet-app/*.zip",
+                                    "pattern": "Aby-dotnet-app/WebApp_${BUILD_NUMBER}.zip",
                                     "target": "G:/jfrog/"          
                                   }
                                ]
