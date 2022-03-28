@@ -34,7 +34,7 @@ pipeline
         {
             steps {
                 
-              waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube'
+                waitForQualityGate abortPipeline: false
 
             }
         }*/
