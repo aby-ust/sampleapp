@@ -1,7 +1,7 @@
 def paths = "C:/ProgramData/jenkins/.jenkins/workspace/dotnetapps/aspnet-core-dotnet-core/aspnet-core-dotnet-core.csproj"
 def files = "aspnet-core-dotnet-core/bin/Debug/netcoreapp1.1/publish"
 def jfrogpath = "G:/jfrog/"
-
+//paths 
 pipeline 
 {
     environment
