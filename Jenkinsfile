@@ -1,5 +1,4 @@
 def paths = "C:/ProgramData/jenkins/.jenkins/workspace/dotnetapps/aspnet-core-dotnet-core/aspnet-core-dotnet-core.csproj"
-def files = "aspnet-core-dotnet-core/bin/Debug/netcoreapp1.1/publish"
 def jfrogpath = "G:/jfrog/"
 //paths 
 pipeline 
@@ -69,7 +68,7 @@ pipeline
                 echo "Deploying to stage environment for more tests!";
                 bat "del *.zip"
                 
-                bat "tar.exe -a -c -f WebApp_${BUILD_NUMBER}.zip ${files}"
+                bat "tar.exe -a -c -f WebApp_${BUILD_NUMBER}.zip ${paths}"
                 }
         }
         
