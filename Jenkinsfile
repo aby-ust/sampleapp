@@ -1,5 +1,5 @@
 def paths = "C:/ProgramData/jenkins/.jenkins/workspace/dotnetapps/aspnet-core-dotnet-core/aspnet-core-dotnet-core.csproj"
-//global variables allocati
+//global var
 
 pipeline 
 {
