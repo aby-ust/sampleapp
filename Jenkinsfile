@@ -1,5 +1,6 @@
 def paths = "C:/ProgramData/jenkins/.jenkins/workspace/dotnetapps/aspnet-core-dotnet-core/aspnet-core-dotnet-core.csproj"
-//global var
+def files = "aspnet-core-dotnet-core/bin/Debug/netcoreapp1.1/publish"
+def jfrogpath = "G:/jfrog/"
 
 pipeline 
 {
@@ -68,11 +69,11 @@ pipeline
                 echo "Deploying to stage environment for more tests!";
                 bat "del *.zip"
                 
-                bat "tar.exe -a -c -f WebApp_${BUILD_NUMBER}.zip aspnet-core-dotnet-core/bin/Debug/netcoreapp1.1/publish"
+                bat "tar.exe -a -c -f WebApp_${BUILD_NUMBER}.zip ${files}"
                 }
         }
         
-        stage ('jfrog creation')
+        /*stage ('jfrog creation')
         {
             steps
             {
@@ -83,7 +84,7 @@ pipeline
                    timeout: 300
                         )
             }
-        }
+        }*/
         stage('Uploading file to jfrog')
         {
             steps{
@@ -92,7 +93,7 @@ pipeline
                   spec: '''{
                    "files": [
                       {
-                      "pattern": "*.zip",
+                      "pattern": "${WORKSPACE}/WebApp_${BUILD_NUMBER}.zip",
                       "target": "Aby-dotnet-app"
                       }
                             ]
@@ -120,7 +121,7 @@ stage ('download the artifacts from artifactory')
                                 "files": [
                                   {
                                     "pattern": "Aby-dotnet-app/WebApp_${BUILD_NUMBER}.zip",
-                                    "target": "G:/jfrog/"          
+                                    "target": "${jfrogpath}"          
                                   }
                                ]
                               }"""
@@ -141,7 +142,8 @@ stage ('download the artifacts from artifactory')
 	   steps
 		{
 		   
-			azureWebAppPublish appName: "${env.appName}", azureCredentialsId: 'Azure', resourceGroup: "${env.resourceGroup}"
+			//azureWebAppPublish appName: "${env.appName}", azureCredentialsId: 'Azure', resourceGroup: "${env.resourceGroup}"
+			  azureWebAppPublish azureCredentialsId: params.Credentials_id , resourceGroup: params.ResourceGroup , appName: params.Myapp
 	    }
 	}
 	}
